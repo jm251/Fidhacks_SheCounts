@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>SheCounts</title>
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style-starter.css">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 24px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .navbar-nav li {
+      margin-right: 20px;
+    }
+
+    .navbar-nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .header-right .btn {
+      margin-left: 20px;
+    }
+
+    .menu-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      display: block;
+      height: 3px;
+      background: #333;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .menu-btn.active .top {
+      transform: rotate(45deg) translateY(8px);
+    }
+
+    .menu-btn.active .mid {
+      opacity: 0;
+    }
+
+    .menu-btn.active .bot {
+      transform: rotate(-45deg) translateY(-8px);
+    }
+
+    #nav {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #nav.open {
+      display: flex;
+    }
+
+    #nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #nav ul li {
+      margin: 10px 0;
+    }
+
+    #nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1,
+    h2 {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 36px;
+      color: #333;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    form,
+    .budget-section,
+    .about-budget {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    form label,
+    .budget-section label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    form input,
+    .budget-section input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    form button,
+    .budget-section button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    form button:hover,
+    .budget-section button:hover {
+      background: #0056b3;
+    }
+
+    #result,
+    #monthlySavings {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .about-budget {
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .about-budget ul {
+      padding-left: 20px;
+    }
+
+    .about-budget ul li {
+      margin-bottom: 10px;
+    }
+    .center-btn {
+        display: block;
+        margin: 10px auto; /* Centers the button horizontally */
+        width: 15%;
+        padding: 10px;
+        background: #007bff;
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .center-btn:hover {
+        background: #0056b3;
+    }
+    .iframe-container {
+        display: flex;
+        justify-content: center; /* Horizontally center */
+        margin-top: 20px; /* Adjust margin as needed */
+    }
+
+  </style>
+</head>
+
+<body>
+  <section class="w3l-header">
+    <nav class="navbar navbar-expand-lg navbar-light py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/images/logo.jpg" alt="Your logo" title="Your logo" style="height:60px;" />
+          She<label class="logo-view">Counts</label>
+        </a> 
+        <div class="header-right d-flex align-items-center">
+          <a href="contact.html" class="btn btn-outline-dark d-none d-md-block btn-outline-style mr-4">Contact Us</a>
+          <section class="w3l-menu">
+            <div class="menu-btn">
+              <span class="top"></span>
+              <span class="mid"></span>
+              <span class="bot"></span>
+            </div>
+            <div id="nav">
+              <ul class="nav-inner">
+                <li>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <a href="about.html">About</a>
+                </li>
+                <li>
+                  <a href="contact.html">Contact</a>
+                </li>
+                <li>
+                  <a href="chatbot.html">Chatbot</a>
+                </li>
+                <li>
+                  <a href="bc.html">Budget Calculator</a>
+                </li>
+                <li>
+                  <a href="reminder.html">Reminders</a>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </nav>
+  </section>
+
+  <main class="container">
+    <h1>Savings and Bank Accounts Literacy Chatbot</h1>
+  </main>
+    
+  <div class="iframe-container">
+    <iframe
+	src="https://rishimeda-savings-and-bank-accounts-bot.hf.space"
+	frameborder="0"
+	width="850"
+	height="450"
+></iframe>
+
+  </div>
+
+  <button type="button" onclick=redirectToPage() class="center-btn">Home</button>
+
+  <!-- Next Page Button Script-->
+  <script>
+    function redirectToPage() {
+      window.location.href = 'chatbot.html';
+    }
+  </script>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+    <!-- jQuery -->
+    <script src="assets/js/jquery-3.4.1.slim.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+  
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+      $(function () {
+        $('.navbar-toggler').click(function () {
+          $('body').toggleClass('noscroll');
+        })
+      });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+  
+  
+  
+    <script src="assets/js/owl.carousel.js"></script>
+    <!-- script for teams1-->
+    <script>
+      $(document).ready(function () {
+        $('.owl-carousel').owlCarousel({
+          loop: true,
+          margin: 0,
+          responsiveClass: true,
+          responsive: {
+            0: {
+              items: 1,
+              nav: true
+            },
+            667: {
+              items: 2,
+              nav: true,
+              margin: 20
+            },
+            1000: {
+              items: 4,
+              nav: true,
+              loop: true,
+              margin: 25
+            }
+          }
+        })
+      })
+    </script>
+    <!-- //script for teams1-->
+  
+    <script>
+      $(document).ready(function () {
+  
+        var $menuBtn = $('.menu-btn');
+        var $nav = $('#nav');
+        var $stylebox = $('#style-box');
+        var $styleli = $stylebox.find('li');
+  
+        $menuBtn.on('click', function () {
+          var $this = $(this);
+          var styles = $stylebox.data('styles');
+          $this.toggleClass("active");
+          $this.next('#nav').toggleClass("open");
+          $stylebox.toggleClass(styles);
+        });
+  
+        $nav.addClass('topslide');
+  
+        $styleli.on('click', function () {
+          var $this = $(this);
+          $this.siblings().removeClass('now');
+          $this.addClass('now');
+          var styles = $this.data('styles');
+          $nav.removeClass();
+          $nav.addClass(styles);
+          $nav.siblings('#style-box').removeClass();
+          $nav.siblings('#style-box').data('styles', styles);
+        });
+      });
+    </script>
+  
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('.popup-with-zoom-anim').magnificPopup({
+          type: 'inline',
+  
+          fixedContentPos: false,
+          fixedBgPos: true,
+  
+          overflowY: 'auto',
+  
+          closeBtnInside: true,
+          preloader: false,
+  
+          midClick: true,
+          removalDelay: 300,
+          mainClass: 'my-mfp-zoom-in'
+        });
+  
+        $('.popup-with-move-anim').magnificPopup({
+          type: 'inline',
+  
+          fixedContentPos: false,
+          fixedBgPos: true,
+  
+          overflowY: 'auto',
+  
+          closeBtnInside: true,
+          preloader: false,
+  
+          midClick: true,
+          removalDelay: 300,
+          mainClass: 'my-mfp-slide-bottom'
+        });
+      });
+    </script>
+
+
+</body>
+
+</html>

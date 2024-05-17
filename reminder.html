@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>SheCounts</title>
+
+  <!-- Google online fonts -->
+  <link href="//fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="assets/css/style-starter.css">
+</head>
+<body>
+  <section class="w3l-header">
+    <nav class="navbar navbar-expand-lg navbar-light py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/images/logo.jpg" alt="Your logo" title="Your logo" style="height:60px;" />
+          She<label class="logo-view">Counts</label>
+        </a> 
+        <div class="header-right d-flex align-items-center">
+          <a href="contact.html" class="btn btn-outline-dark d-none d-md-block btn-outline-style mr-4">Contact Us</a>
+          <section class="w3l-menu">
+            <div class="menu-btn">
+              <span class="top"></span>
+              <span class="mid"></span>
+              <span class="bot"></span>
+            </div>
+            <div id="nav">
+              <ul class="nav-inner">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="bc.html">Budget Calculator</a></li>
+                <li><a href="reminder.html">Reminders</a></li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </nav>
+  </section>
+
+  <!-- Reminder section -->
+  <div class="container">
+    <h1>Reminders</h1>
+    <div>
+      <input type="text" id="reminderInput" placeholder="Enter a reminder">
+      <input type="date" id="dateInput">
+      <input type="number" id="costInput" placeholder="Enter cost">
+      <button onclick="addReminder()">Add Reminder</button>
+    </div>
+    <ul id="reminderList"></ul>
+  </div>
+    
+  <script>
+    function addReminder() {
+      var input = document.getElementById("reminderInput");
+      var text = input.value.trim();
+      var date = document.getElementById("dateInput").value;
+      var cost = document.getElementById("costInput").value;
+
+      if (text === "") {
+        alert("Please enter a reminder.");
+        return;
+      }
+
+      var list = document.getElementById("reminderList");
+      var listItem = document.createElement("li");
+      listItem.className = "reminderItem";
+
+      // Create checkbox
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.className = "checklistItem";
+
+      // Create label for checkbox
+      var label = document.createElement("label");
+      label.textContent = text + " - Date: " + date + ", Cost: $" + cost;
+      label.className = "checklistItem";
+
+      listItem.appendChild(checkbox);
+      listItem.appendChild(label);
+      list.appendChild(listItem);
+
+      input.value = "";
+
+      // Schedule notification for the due date
+      var now = new Date();
+      var reminderDate = new Date(date);
+      var timeDiff = reminderDate.getTime() - now.getTime();
+      if (timeDiff > 0) {
+        setTimeout(function() {
+          alert("Reminder: " + text + " - Date: " + date);
+        }, timeDiff);
+      } else {
+        alert("Reminder: " + text + " - Date: " + date);
+      }
+    }
+  </script>
+
+  <!-- jQuery -->
+  <script src="assets/js/jquery-3.4.1.slim.min.js"></script>
+  <!-- Bootstrap js -->
+  <script src="assets/js/bootstrap.min.js"></script>
+
+  <!-- disable body scroll which navbar is in active -->
+  <script>
+    $(function () {
+      $('.navbar-toggler').click(function () {
+        $('body').toggleClass('noscroll');
+      })
+    });
+  </script>
+  <!-- disable body scroll which navbar is in active -->
+
+  <script src="assets/js/owl.carousel.js"></script>
+  <!-- script for teams1-->
+  <script>
+    $(document).ready(function () {
+      $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 0,
+        responsiveClass: true,
+        responsive: {
+          0: {
+            items: 1,
+            nav: true
+          },
+          667: {
+            items: 2,
+            nav: true,
+            margin: 20
+          },
+          1000: {
+            items: 4,
+            nav: true,
+            loop: true,
+            margin: 25
+          }
+        }
+      })
+    })
+  </script>
+  <!-- //script for teams1-->
+
+  <script>
+    $(document).ready(function () {
+      var $menuBtn = $('.menu-btn');
+      var $nav = $('#nav');
+      var $stylebox = $('#style-box');
+      var $styleli = $stylebox.find('li');
+
+      $menuBtn.on('click', function () {
+        var $this = $(this);
+        var styles = $stylebox.data('styles');
+        $this.toggleClass("active");
+        $this.next('#nav').toggleClass("open");
+        $stylebox.toggleClass(styles);
+      });
+
+      $nav.addClass('topslide');
+
+      $styleli.on('click', function () {
+        var $this = $(this);
+        $this.siblings().removeClass('now');
+        $this.addClass('now');
+        var styles = $this.data('styles');
+        $nav.removeClass();
+        $nav.addClass(styles);
+        $nav.siblings('#style-box').removeClass();
+        $nav.siblings('#style-box').data('styles', styles);
+      });
+    });
+  </script>
+
+  <script src="assets/js/jquery.magnific-popup.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.popup-with-zoom-anim').magnificPopup({
+        type: 'inline',
+        fixedContentPos: false,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        closeBtnInside: true,
+        preloader: false,
+        midClick: true,
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in'
+      });
+
+      $('.popup-with-move-anim').magnificPopup({
+        type: 'inline',
+        fixedContentPos: false,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        closeBtnInside: true,
+        preloader: false,
+        midClick: true,
+        removalDelay: 300,
+        mainClass: 'my-mfp-slide-bottom'
+      });
+    });
+  </script>
+
+</body>
+</html>
