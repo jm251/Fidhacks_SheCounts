@@ -34,7 +34,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="chatbot.js">Chatbot</a></li>
                 <li><a href="bc.html">Budget Calculator</a></li>
                 <li><a href="reminder.html">Reminders</a></li>
               </ul>
@@ -46,15 +46,25 @@
   </section>
 
   <!-- Reminder section -->
-  <div class="container">
-    <h1>Reminders</h1>
-    <div>
-      <input type="text" id="reminderInput" placeholder="Enter a reminder">
-      <input type="date" id="dateInput">
-      <input type="number" id="costInput" placeholder="Enter cost">
-      <button onclick="addReminder()">Add Reminder</button>
+  <div class="container mt-5">
+    <h1 class="mb-4">Reminders</h1>
+    <div class="card p-4 mb-4">
+      <div class="form-row align-items-center">
+        <div class="col-sm-4 my-1">
+          <input type="text" class="form-control" id="reminderInput" placeholder="Enter a reminder">
+        </div>
+        <div class="col-sm-3 my-1">
+          <input type="date" class="form-control" id="dateInput">
+        </div>
+        <div class="col-sm-3 my-1">
+          <input type="number" class="form-control" id="costInput" placeholder="Enter cost">
+        </div>
+        <div class="col-sm-2 my-1">
+          <button class="btn btn-primary btn-block" onclick="addReminder()">Add Reminder</button>
+        </div>
+      </div>
     </div>
-    <ul id="reminderList"></ul>
+    <ul class="list-group" id="reminderList"></ul>
   </div>
     
   <script>
@@ -71,17 +81,16 @@
 
       var list = document.getElementById("reminderList");
       var listItem = document.createElement("li");
-      listItem.className = "reminderItem";
+      listItem.className = "list-group-item d-flex justify-content-between align-items-center";
 
       // Create checkbox
       var checkbox = document.createElement("input");
       checkbox.type = "checkbox";
-      checkbox.className = "checklistItem";
+      checkbox.className = "mr-3";
 
       // Create label for checkbox
-      var label = document.createElement("label");
+      var label = document.createElement("span");
       label.textContent = text + " - Date: " + date + ", Cost: $" + cost;
-      label.className = "checklistItem";
 
       listItem.appendChild(checkbox);
       listItem.appendChild(label);
