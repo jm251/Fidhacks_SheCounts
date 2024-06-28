@@ -8,7 +8,7 @@ import transformers
 from sentence_transformers import SentenceTransformer
 
 genai.configure()
-genai.configure(api_key="AIzaSyCADQk7KaP90mSKslhtEC3qRjyeUVxBkvI")
+genai.configure(api_key="API key")
 model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat(history=[])
 
@@ -16,7 +16,7 @@ chat = model.start_chat(history=[])
 model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
 
 # Pinecone
-pc = Pinecone(api_key='2f128e6b-d4b4-4b74-a7f1-1e911a8e5fd2')
+pc = Pinecone(api_key='API Key')
 index_name = "fidhacks"
 index = pc.Index(index_name)
 
