@@ -11,14 +11,14 @@ app = Flask(__name__)
 CORS(app)
 
 # Configure AI services
-genai.configure(api_key="YOUR_API_KEY_HERE")  # Replace with your actual API key
+genai.configure(api_key="YOUR_API_KEY_HERE")  # Replace with your actual API key like this AIzaSyCC8lv6ylyiq2f4csBH8LX1bktSaoDBqyMP
 model = genai.GenerativeModel('gemini-pro')
 
 # Initialize sentence transformer
 sentence_model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
 
 # Pinecone configuration
-pc = Pinecone(api_key='YOUR_PINECONE_API_KEY_HERE')  # Replace with your actual API key
+pc = Pinecone(api_key='YOUR_PINECONE_API_KEY_HERE')  # Replace with your actual API key like this pcsk_f78ui_DiRV152wxnikF4juHxcJsNEAtBZNNeuQqhGSofUKgm76W7NmdKBhXCg5y6U1kJrP
 index_name = "fidhacks"
 
 try:
